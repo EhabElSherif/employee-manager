@@ -1,5 +1,6 @@
 package com.practice.employeemanager.service;
 
+import com.practice.employeemanager.exception.UserNotFoundException;
 import com.practice.employeemanager.model.Employee;
 import com.practice.employeemanager.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class EmployeeService {
     public void deleteEmployee(Long id){
         boolean exists = employeeRepository.existsById(id);
         if(!exists){
-            throw new IllegalStateException("employee with id "+id+" doesn't exists");
+            throw new UserNotFoundException("employee with id "+id+" doesn't exists");
         }
         employeeRepository.deleteById(id);
     }
